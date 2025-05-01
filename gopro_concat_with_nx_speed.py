@@ -1,6 +1,10 @@
 import subprocess
 from time import sleep
-import os, sys
+import os
+import sys
+from dotenv import load_dotenv
+
+load_dotenv(".env",override=True)
 
 """"
 gopro hero8でのファイル名の付き方
@@ -21,11 +25,12 @@ VISION
 ②GUIで操作可能にする
 """
 
+
 # 入力ファイルの指定
 ## 動画ファイルの参照元
-raw_video_root = "/media/zant/6414EC4114EC17B6/ubuntu_share/gopro/2024-11-10/"
+raw_video_root = os.getenv("RAW_VIDEO_DIR")
 ## 動画ファイルの保存場所
-dst_video_root = "/media/zant/6414EC4114EC17B6/ubuntu_share/gopro/2024-11-10/"
+dst_video_root = os.getenv("CONCAT_VIDEO_DIR")
 ## 対象となるビデオ群
 video_idx = input("last 4 number of the video (xxxx-xxxx or xxxx): ").strip().replace("\n", "")
 ## 動画スピード

@@ -12,4 +12,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 # bash-completionの設定(uvの設定)
 RUN echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
 
+# uvのインストールの確定
+RUN source $HOME/.local/bin/env
+
 # ...existing code...
