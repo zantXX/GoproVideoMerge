@@ -1,0 +1,15 @@
+{
+  "name": "GoproVideoMerge",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {},
+  "extensions": [
+    "ms-python.python",
+    "ms-azuretools.vscode-docker",
+    "charliermarsh.ruff",
+    "davidanson.vscode-markdownlint"
+  ],
+  "postCreateCommand": "",
+  "remoteUser": "vscode"
+}
