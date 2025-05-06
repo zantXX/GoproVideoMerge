@@ -1,0 +1,4 @@
+ffconcat version 1.0
+file 'C:\ubuntu_share\gopro\2025-05-06\GX010691.MP4'
+file 'C:\ubuntu_share\gopro\2025-05-06\GX020691.MP4'
+file 'C:\ubuntu_share\gopro\2025-05-06\GX030691.MP4'
