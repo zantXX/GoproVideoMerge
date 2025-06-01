@@ -189,4 +189,3 @@ if __name__ == "__main__":
             print("\n動画セットが見つからなかったため、ffmpeg関連のテスト (write_file_list, video_concat) はスキップします。")
 
     print("\n--- ffmpeg.py script execution finished ---")
-```
