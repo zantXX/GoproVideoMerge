@@ -30,12 +30,26 @@ def write_file_list(video_set:dict, temp_ffmpeg_dir:Path) -> None:
                 f.write(f"file '{path}'\n")
 
 
-def video_concat(video_list:Path, dist_video_root:Path, video_output_name:str, override:bool = True,sleep_time:int =1) -> None:
+def video_concat(video_list: Path, dist_video_root: Path, video_output_name: str, override: bool = True, sleep_time: int = 1) -> str:
+    """
+    ffmpegで動画を結合し、標準出力・標準エラーを返す。
+    Args:
+        video_list (Path): ffconcat形式のリストファイル
+        dist_video_root (Path): 出力先ディレクトリ
+        video_output_name (str): 出力ファイル名（拡張子なし）
+        override (bool): 上書きするか
+        sleep_time (int): 実行後のスリープ秒数
+    Returns:
+        str: ffmpegの出力内容（標準出力＋標準エラー）
+    """
     listing_file = str(video_list.absolute())
     output_path = str(dist_video_root.absolute()) + "/" + video_output_name + ".mp4"
-    override = "-y" if override else "-n"
-    subprocess.run(["ffmpeg", override, "-f", "concat", "-safe", "0", "-i", listing_file, "-c", "copy", output_path])
+    override_flag = "-y" if override else "-n"
+    result = subprocess.run([
+        "ffmpeg", override_flag, "-f", "concat", "-safe", "0", "-i", listing_file, "-c", "copy", output_path
+    ], capture_output=True, text=True)
     sleep(sleep_time)
+    return result.stdout + "\n" + result.stderr
 
 def delete_file_list(temp_ffmpeg_dir:Path) -> None:
     # フォルダかどうかを判別
